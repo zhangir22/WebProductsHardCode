@@ -1,0 +1,61 @@
+﻿@using HardCodeWeb.Models;
+@model List<HardCodeWeb.Models.Category>
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout";
+    Category selectedCategory = null ;
+}
+ 
+<h1>Create</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="Product/Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+ 
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input name="Name" placeholder="Name of product" asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input name="Description" placeholder="Description of product" asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Count" class="control-label"></label>
+                <input name="Count" placeholder ="Count of product" asp-for="Count" class="form-control" />
+                <span asp-validation-for="Count" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalValues" class="control-label"></label>
+                <input name="AdditionalValues" placeholder="AdditionalValues" id="AdditionalValues" asp-for="AdditionalValues" class="form-control" />
+                <span asp-validation-for="AdditionalValues" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <select id="select1" onchange="handleSelectChange(event)" name="" class="user-select-all">
+                    @foreach(var item in Model)
+                    {
+                        <option  class="options" value=@item.Id name="CategoryId" asp-for="CategoryId">@item.Name</option>
+                    }
+                </select> 
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+ 

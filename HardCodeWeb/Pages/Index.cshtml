@@ -1,0 +1,11 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Orientation</h1> 
+    @Html.ActionLink("ProductController","Index","Product") <br />
+    @Html.ActionLink("CategoryController","Index","Category")
+</div>
